@@ -1,9 +1,15 @@
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
-// TODO: Add the missing query selectors:
-const score; // Use querySelector() to get the score element
-const timerDisplay; // use querySelector() to get the timer element.
+const startBtn = document.querySelector('#startBtn');
+const score = document.querySelector("#score");
+const timerDisplay = document.querySelector("#timer");
+
+const difficultyLevel = Object.freeze({
+   Easy: 'easy',
+   Medium: 'medium',
+   Hard: 'hard'
+});
 
 let time = 0;
 let timer;
@@ -21,7 +27,7 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -40,8 +46,16 @@ function randomInteger(min, max) {
  *
  */
 function setDelay(difficulty) {
-  // TODO: Write your code here.
-  
+  switch (difficulty) {
+    case difficultyLevel.Easy:
+      return 1500;
+    case difficultyLevel.Medium:
+      return 1000;
+    case difficultyLevel.Hard:
+      return randomInteger(600, 1200);
+    default:
+      throw new Error("Invalid difficulty number");
+  }
 }
 
 /**
