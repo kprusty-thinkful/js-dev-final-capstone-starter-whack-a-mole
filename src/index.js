@@ -1,7 +1,6 @@
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
-const startBtn = document.querySelector('#startBtn');
 const score = document.querySelector("#score");
 const timerDisplay = document.querySelector("#timer");
 
@@ -159,8 +158,7 @@ function toggleVisibility(hole){
 *
 */
 function updateScore() {
-  // TODO: Write your code here
-  points++;
+  points +=1;
   score.textContent=points;
   return points;
 }
@@ -173,7 +171,6 @@ function updateScore() {
 *
 */
 function clearScore() {
-  // TODO: Write your code here
   points = 0;
   score.textContent = points;
   return points;
@@ -212,8 +209,6 @@ function startTimer() {
 *
 */
 function whack(event) {
-  // TODO: Write your code here.
-  // call updateScore()
   updateScore();
   return points;
 }
@@ -224,12 +219,13 @@ function whack(event) {
 * for an example on how to set event listeners using a for loop.
 */
 function setEventListeners(){
-  // TODO: Write your code here
-
+  moles.forEach((mole) => {
+    mole.addEventListener("click", whack);
+  });
   return moles;
 }
 
-/**q
+/**
 *
 * This function sets the duration of the game. The time limit, in seconds,
 * that a player has to click on the sprites.
