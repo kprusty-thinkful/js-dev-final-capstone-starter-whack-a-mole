@@ -273,7 +273,6 @@ function startGame(){
   clearScore();
   showUp();
   setDuration(10);
-  //showUp();
   setEventListeners();
   startTimer();
   return "game started";
@@ -286,17 +285,6 @@ function playBackgroundMusic() {
     }
   } else {
       audio = new Audio(".././assets/molesong.mp3").play();
-  }
-  //audio.play();
-}
-
-function muteMusic() {
-  console.log("Toggle Mute function called");
-  if (audio) {
-    isMuted = !isMuted;
-    audio.muted = isMuted;
-    document.getElementById("mute").innerText = isMuted ? "Unmute" : "Mute";
-    console.log(`Audio muted: ${isMuted}`);
   }
 }
 
