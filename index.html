@@ -1,13 +1,32 @@
 <html>
   <head>
     <link rel="stylesheet" href="./src/styles.css">
+    <script defer src="./src/index.js"></script>
   </head>
   <body>
     <h1 id="title"> Smack a Mole!!! </h1>
     <div>
       <div>
+        <h2>Set Difficulty level</h2>
+        <div class="radio">
+          <div>
+            <input type="radio" id="easy" name="difficulty" value="easy" checked />
+            <label for="easy">easy</label>
+          </div>
+          <div>
+            <input type="radio" id="normal" name="difficulty" value="normal" />
+            <label for="normal">normal</label>
+          </div>
+          <div>
+            <input type="radio" id="hard" name="difficulty" value="hard" />
+            <label for="hard">hard</label>
+          </div>
+        </div>
+      </div>
+      <div>
         <h2>Click
-          <button id="start"> start </button> to play!</h2>
+          <button id="start"> start
+          </button> to play!</h2>
       </div>
       <div>
         <h2>score: <span id="score">0</span></h2>
@@ -46,6 +65,9 @@
         <div id="mole8" class="mole"></div>
       </div>
     </div>
-    <script src="./src/index.js"></script>
+    <div>
+      <button id="mute" onclick="muteMusic();"> Mute </button>
+    </div>
+
   </body>
 </html>

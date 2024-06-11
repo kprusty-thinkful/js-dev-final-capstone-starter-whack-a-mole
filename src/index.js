@@ -3,10 +3,11 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector("#score");
 const timerDisplay = document.querySelector("#timer");
+const difficultyLevels = document.querySelectorAll("[name='difficulty']");
 
 const difficultyLevel = Object.freeze({
    Easy: 'easy',
-   Medium: 'medium',
+   Normal: 'normal',
    Hard: 'hard'
 });
 
@@ -14,7 +15,21 @@ let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+// let difficulty = "hard";
+let audio = null;
+let isMuted = false;
+
+function getDifficultyLevel() {
+  return Array.from(difficultyLevels).filter((level) => level.checked)[0].value;
+}
+
+difficultyLevels.forEach((level) => {
+  level.addEventListener('click', (event) => {
+    difficulty = getDifficultyLevel();
+  })
+})
+
+let difficulty = getDifficultyLevel();
 
 /**
  * Generates a random integer within a range.
@@ -48,7 +63,7 @@ function setDelay(difficulty) {
   switch (difficulty) {
     case difficultyLevel.Easy:
       return 1500;
-    case difficultyLevel.Medium:
+    case difficultyLevel.Normal:
       return 1000;
     case difficultyLevel.Hard:
       return randomInteger(600, 1200);
@@ -114,7 +129,7 @@ function gameOver() {
 *
 */
 function showUp() {
-  let delay = setDelay("easy");
+  let delay = setDelay(difficulty);
   const hole = chooseHole(holes);
   return showAndHide(hole, delay);
 }
@@ -255,13 +270,37 @@ function stopGame(){
 *
 */
 function startGame(){
-  setDuration(10);
+  clearScore();
   showUp();
+  setDuration(10);
+  //showUp();
+  setEventListeners();
+  startTimer();
   return "game started";
 }
 
-startButton.addEventListener("click", startGame);
+function playBackgroundMusic() {
+  if(audio) {
+    if(!audio.paused) {
+      return;
+    }
+  } else {
+      audio = new Audio(".././assets/molesong.mp3").play();
+  }
+  //audio.play();
+}
 
+function muteMusic() {
+  console.log("Toggle Mute function called");
+  if (audio) {
+    isMuted = !isMuted;
+    audio.muted = isMuted;
+    document.getElementById("mute").innerText = isMuted ? "Unmute" : "Mute";
+    console.log(`Audio muted: ${isMuted}`);
+  }
+}
+
+startButton.addEventListener("click", startGame);
 
 // Please do not modify the code below.
 // Used for testing purposes.
