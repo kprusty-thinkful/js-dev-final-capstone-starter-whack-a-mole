@@ -439,4 +439,5 @@ General code organization:
 - If you are stuck, take a careful look at the provided resources. If you are still stuck, ask a friend or a mentor for help.
 - Read the user stories and tests carefully.
 
-# The final outcome of this project is hosted at the below github pages - https://kprusty-thinkful.github.io/js-dev-final-capstone-starter-whack-a-mole/ 
+# The final outcome of this project is hosted at the below github pages: 
+[https://kprusty-thinkful.github.io/js-dev-final-capstone-starter-whack-a-mole/]
